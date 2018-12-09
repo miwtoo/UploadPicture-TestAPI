@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 class PicContoller {
-    private static String UPLOADED_FOLDER = "D://User profile//Documents//GitHub//UploadPictureLocal-angular-spring//server//picture//";
+    private static String UPLOADED_FOLDER = "D://User profile//Documents//GitHub//UploadPictureLocal-angular-spring//picture//";
 
     @GetMapping
     public String Hello() {
@@ -25,12 +25,7 @@ class PicContoller {
     }
 
     @PostMapping("/upload")
-    public String UploadPic(@RequestParam("pic") MultipartFile file,RedirectAttributes redirectAttributes) {
-
-        if (file.isEmpty()) {
-            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-            return "redirect:uploadStatus";
-        }
+    public String UploadPic(@RequestParam("pic") MultipartFile file) {
 
         try {
 
@@ -38,15 +33,13 @@ class PicContoller {
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
 
-            redirectAttributes.addFlashAttribute("message",
-                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+            return "You successfully uploaded '" + file.getOriginalFilename() + "'";
 
         } catch (IOException e) {
             e.printStackTrace();
             return "fail";
         }
 
-        return "redirect:/uploadStatus";
     }
 
 }
