@@ -1,6 +1,19 @@
-<div id="localpic">
-  <form action="http://localhost:8080/upload" method="POST" enctype="multipart/form-data">
-    <input type="file" name="pic">
-    <input type="submit">
-  </form>
+<form #uppic="ngForm" (ngSubmit)="onSubmit(uppic)">
+  <input type="file" name="img" [(ngModel)]="uppic.img" (change)="readUrl($event)">
+  <input type="submit" value="Upload">
+</form>
+
+<ul>
+  <li>id : {{imgData.id}}</li>
+  <li>link : {{imgData.link}}</li>
+  <li>type : {{imgData.type}}</li>
+  <li>height : {{imgData.height}}</li>
+  <li>width : {{imgData.width}}</li>
+</ul>
+<br>
+<img width="500" [src]="imgData.link">
+<br>
+
+<div *ngFor="let item of images">
+  <img width="500" [src]="item.link">
 </div>
