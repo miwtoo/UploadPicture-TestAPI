@@ -13,7 +13,14 @@
 <br>
 <img width="500" [src]="imgData.link">
 <br>
-
+<br><br><br><br>
 <div *ngFor="let item of images">
   <img width="500" [src]="item.link">
+  <ul>
+    <li>id : {{item.id}}</li>
+    <li>link : {{item.link}}</li>
+    <li>type : {{item.type}}</li>
+    <li>height : {{item.height}}</li>
+    <li>width : {{item.width}}</li>
+  </ul>
 </div>

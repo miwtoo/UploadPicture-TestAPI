@@ -56,6 +56,18 @@ export class AppComponent {
         console.log("Error", error);
       }
     ); 
+
+    this.http.get("https://api.imgur.com/3/account/miwtoo/images",httpOptions).subscribe(
+      getData => {
+        console.log("GET Request is successful ", getData);
+        this.images = getData["data"]
+        //console.log(this.imgUrl);
+        
+      },
+      error => {
+        console.log("Error", error);
+      }
+    ); 
   }
 
   readUrl(event:any) {
